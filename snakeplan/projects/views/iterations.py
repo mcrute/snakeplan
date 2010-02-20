@@ -1,11 +1,14 @@
-from django.shortcuts import render_to_response
-from snakeplan.projects.models import Project, Iteration
+from django.views.generic import list_detail
+from snakeplan.projects.models import Iteration
 
-def iteration_list(request, project_id):
+def index(request, project_id):
     iterations = Iteration.objects.filter(project=project_id)
     project = iterations[0].project
 
-    return render_to_response("iterations/iteration_list.html",
-                              {"project_name" : project.name,
-                               "iterations" : iterations,
-                              })
+    return list_detail.object_list(
+        request=request,
+        template_name='iterations/iteration_list.html',
+        queryset=iterations,
+        extra_context={'project_name': project},
+        allow_empty=True
+        )

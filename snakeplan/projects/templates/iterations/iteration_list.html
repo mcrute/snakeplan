@@ -2,8 +2,8 @@
 
 <h2>Iterations</h2>
 <ul>
-{% for iteration in iterations %}
+    {% for iteration in object_list %}
     <li><a href="/iteration/{{iteration.id}}">{{iteration.name}}</a></li>
-{% endfor %}
+    {% endfor %}
 </ul>
 </ul>
