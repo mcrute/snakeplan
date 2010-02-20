@@ -1,14 +1,16 @@
-from django.conf.urls.defaults import *
 from django.contrib import admin
+from django.conf.urls.defaults import patterns, include
+
+# Just get the admin stuff, don't actually do anything with it
 from snakeplan.projects import admin as snakeplan_admin
+
 
 admin.autodiscover()
 
+
 urlpatterns = patterns('',
-     (r'^snakeplan/projects/', include('snakeplan.projects.urls')),
      (r'^admin/', include(admin.site.urls)),
-     #(r'^foo$', 'snakeplan.projects.views.foo'),
-     #(r'^projects$', 'snakeplan.projects.views.foo'),
+     (r'^projects/', include('snakeplan.projects.urls')),
 )
 
 
@@ -54,6 +56,5 @@ GET    /modelname/bulk/create   display a bulk insert form
 POST   /modelname/bulk/insert   performs a bulk insert and redirect
 
 POST   /modelname/bulk/delete   performs a bulk delete and redirect
-
 ====== ======================== ========================================
 """
