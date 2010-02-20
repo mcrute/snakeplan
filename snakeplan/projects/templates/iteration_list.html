@@ -1,0 +1,18 @@
+<h1>{{project_name}}</h1>
+
+
+{% for item in iteration_list %}
+<div id="{{item.id}}">
+    <ul>
+        <li><a href="{{item.id}}">{{ item.name }}</a></li>
+        <li>{{ item.description }}</li>
+        <li>{{ item.status }}</li>
+        <li>{{ item.start_date }}</li>
+        <li>{{ item.end_date }}</li>
+        <li>{{ item.days_worked }}</li>
+    </ul>
+</div>
+{% endfor %}
+</ul>
+
+
