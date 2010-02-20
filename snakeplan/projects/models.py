@@ -32,6 +32,9 @@ class Project(Model):
     hidden = m.BooleanField(default=False)
     wiki_link = m.URLField(blank=True)
 
+    def __unicode__(self):
+        return self.name
+
 
 class Iteration(Model):
 
@@ -42,6 +45,9 @@ class Iteration(Model):
     end_date = m.DateField()
     days_worked = m.DecimalField(default=0, decimal_places=2, max_digits=5)
     description = m.TextField(blank=True)
+
+    def __unicode__(self):
+        return self.name
 
 
 class Story(Model):
@@ -57,6 +63,9 @@ class Story(Model):
     order = m.IntegerField()
     description = m.TextField(blank=True)
 
+    def __unicode__(self):
+        return self.name
+
 
 class Task(Model):
 
@@ -68,6 +77,9 @@ class Task(Model):
     estimated_hours = m.DecimalField(decimal_places=2, max_digits=5)
     description = m.TextField(blank=True)
 
+    def __unicode__(self):
+        return self.name
+
 
 class LoggedTime(Model):
 
@@ -78,3 +90,6 @@ class LoggedTime(Model):
     person1 = m.ForeignKey(User, blank=True, related_name="person1")
     person2 = m.ForeignKey(User, blank=True, related_name="person2")
     description = m.TextField(blank=True)
+
+    def __unicode__(self):
+        return self.description
