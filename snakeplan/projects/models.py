@@ -53,11 +53,11 @@ class Iteration(Model):
 class Story(Model):
 
     name = m.CharField(max_length=200)
-    project = m.ForeignKey(Project)
-    iteration = m.ForeignKey(Iteration, blank=True)
+    iteration = m.ForeignKey(Iteration)
     disposition = m.IntegerField(choices=DISPOSITIONS)
-    customer = m.ForeignKey(User, blank=True, related_name='story_customer')
-    tracker = m.ForeignKey(User, blank=True)
+    customer = m.ForeignKey(User, blank=True, null=True,
+                                related_name='story_customer')
+    tracker = m.ForeignKey(User, blank=True, null=True)
     status = m.IntegerField(choices=STATUSES, default=0)
     priority = m.IntegerField()
     order = m.IntegerField()
