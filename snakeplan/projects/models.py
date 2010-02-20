@@ -52,6 +52,9 @@ class Iteration(Model):
 
 class Story(Model):
 
+    class Meta:
+        verbose_name_plural = 'Stories'
+
     name = m.CharField(max_length=200)
     iteration = m.ForeignKey(Iteration)
     disposition = m.IntegerField(choices=DISPOSITIONS)
