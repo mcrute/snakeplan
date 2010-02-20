@@ -8,6 +8,6 @@ from snakeplan.projects import admin as snakeplan_admin
 
 
 urlpatterns = patterns('',
-     (r'^admin/', include('django.contrib.admin.site.urls')),
+     (r'^admin/', include(admin.site.urls)),
      (r'^project/', include('snakeplan.projects.urls')),
 )
