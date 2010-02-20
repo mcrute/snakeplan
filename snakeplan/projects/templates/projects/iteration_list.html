@@ -5,7 +5,7 @@
 {% for iteration in object_list %}
 <div id="{{iteration.id}}">
 <ul>
-    <li><a href="{{iteration.id}}">{{iteration.name}}</a></li>
+    <li><a href="/iteration/{{iteration.id}}">{{iteration.name}}</a></li>
     <li>{{iteration.description}}</li>
     <li>{{iteration.status}}</li>
     <li>{{iteration.start_date}}</li>
