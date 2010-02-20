@@ -1,6 +1,7 @@
-from django.conf.urls.defaults import *
-from projects.views.iterations import *
+from django.conf.urls.defaults import patterns
 
-urlpatterns = patterns('',
-    ('^(.*?)/iterations/', iteration_list),
+
+urlpatterns = patterns('snakeplan.projects.views',
+    ('^(.*)/', 'iterations.iteration_list'),
+    (r'^story/(.*)/', 'stories.index'),
 )
