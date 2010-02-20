@@ -5,10 +5,10 @@ from snakeplan.projects import admin as snakeplan_admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-     (r'^snakeplan/iterations/', include('snakeplan.projects.urls')),
+     (r'^snakeplan/projects/', include('snakeplan.projects.urls')),
      (r'^admin/', include(admin.site.urls)),
-     (r'^foo$', 'snakeplan.projects.views.foo'),
-     (r'^projects$', 'snakeplan.projects.views.foo'),
+     #(r'^foo$', 'snakeplan.projects.views.foo'),
+     #(r'^projects$', 'snakeplan.projects.views.foo'),
 )
 
 
