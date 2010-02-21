@@ -6,5 +6,6 @@ urlpatterns = patterns('snakeplan.projects.views',
     (r'^story/(.*)/', 'stories.index'),
     (r'^iteration/(.*)/', 'iterations.index'),
     (r'^create/', 'projects.create_project'),
+    (r'^(.*)/iterations', 'projects.project_iterations'),
     url(r'^(.*)/', 'projects.project_iterations', name='project_iterations'),
 )
