@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %}SnakePlan{% endblock %}</title>
+        <link rel="stylesheet" href="/static/css/blueprint/screen.css" type="text/css" media="screen, projection">
+        <link rel="stylesheet" href="/static/css/blueprint/print.css" type="text/css" media="print">	
+    </head>
+    <body>
+        <div class="container">
+        {% block content %}{% endblock %}
+        </div>
+    </body>
+</html>

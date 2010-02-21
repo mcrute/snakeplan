@@ -1,0 +1,4 @@
+Work To Do
+==========
+ * Fix imports of snakeplan, instead place projects in the pythonpath
+ * Move templates from the application to the project

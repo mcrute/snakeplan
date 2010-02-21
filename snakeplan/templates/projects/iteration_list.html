@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Project: {{project_name}}</h1>
+
+<h2>Iterations</h2>
+	
+<table>
+    <tr>
+        <th>Iteration</th>
+        <th>Description</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+    </tr>
+{% for iteration in object_list %}
+    <tr>
+        <td><a href="/iteration/{{iteration.id}}">{{iteration.name}}</a></td>
+        <td>{{iteration.description}}</td>
+        <td>{{iteration.start_date}}</td>
+        <td>{{iteration.end_date}}</td>
+    </tr>
+{% endfor %}
+</table>
+{% endblock %}
