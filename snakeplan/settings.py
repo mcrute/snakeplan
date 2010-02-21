@@ -1,3 +1,7 @@
+import os.path
+
+PROJECT_DIR = os.path.abspath(os.path.dirname(__file__))
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -43,6 +47,7 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'snakeplan.urls'
 
 TEMPLATE_DIRS = (
+    os.path.join(PROJECT_DIR, 'templates'),
 )
 
 INSTALLED_APPS = (
