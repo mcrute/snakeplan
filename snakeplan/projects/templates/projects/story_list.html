@@ -1,0 +1,8 @@
+<h1>Iteration: {{ iteration_name }}</h1>
+
+<h2>Stories</h2>
+<ol>
+    {% for story in object_list %}
+    <li><a href="/project/story/{{story.id}}/">{{story.name}}</a></li>
+    {% endfor %}
+</ol>
