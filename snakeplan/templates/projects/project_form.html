@@ -1,13 +1,10 @@
-<html>
-<head>
-<title>OH: oh shit, i just added templates to the old directory</title>
-</head>
-<body>
+{% extends "base.html" %}
+
+{% block content %}
 <form action="" method="POST">
 <ul>
 {{ form.as_ul }}
 </ul>
 <input type="submit" value="Save"/>
 </form>
-</body>
-</html>
+{% endblock %}
