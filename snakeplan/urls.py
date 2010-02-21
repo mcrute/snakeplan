@@ -8,7 +8,11 @@ admin.autodiscover()
 from snakeplan.projects import admin as snakeplan_admin
 
 
-urlpatterns = patterns('',
+urlpatterns = patterns('django.views.generic.simple',
+     (r'^$', 'redirect_to', dict(url='/project/'))
+)
+
+urlpatterns += patterns('',
      (r'^admin/', include(admin.site.urls)),
      (r'^project/', include('snakeplan.projects.urls')),
      (r'^static/(?P<path>.*)$', static.serve, {'document_root':'../static'}),
