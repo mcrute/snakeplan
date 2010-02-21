@@ -1,18 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
 <h1>Project: {{project_name}}</h1>
 
 <h2>Iterations</h2>
 	
+<table>
+    <tr>
+        <th>Iteration</th>
+        <th>Description</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+    </tr>
 {% for iteration in object_list %}
-<div id="{{iteration.id}}">
-<ul>
-    <li><a href="/iteration/{{iteration.id}}">{{iteration.name}}</a></li>
-    <li>{{iteration.description}}</li>
-    <li>{{iteration.status}}</li>
-    <li>{{iteration.start_date}}</li>
-    <li>{{iteration.end_date}}</li>
-    <li>{{iteration.days_worked}}</li>
-</ul>
-</div>
+    <tr>
+        <td><a href="/iteration/{{iteration.id}}">{{iteration.name}}</a></td>
+        <td>{{iteration.description}}</td>
+        <td>{{iteration.start_date}}</td>
+        <td>{{iteration.end_date}}</td>
+    </tr>
 {% endfor %}
-</ul>
-
+</table>
+{% endblock %}
