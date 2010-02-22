@@ -2,10 +2,19 @@
 
 {% block content %}
 
-<h1>{{ object.name }}</h1>
+<h1>Story: {{ object.name }}</h1>
+
+<h2>Descipton:</h2>
+<p class="story_description">{{ object.description }}</p>
+
+<h2>Tasks:</h2>
 
 <ol>
-    <li> {{ object }} </li>
+    {% for task in tasks %}
+    <li>
+        <a href="/p/task/{{ task.id }}/">{{ task.name }}</a>
+    </li>
+    {% endfor %}
 </ol>
 
 {% endblock %}
