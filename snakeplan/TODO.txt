@@ -2,3 +2,8 @@ Work To Do
 ==========
  * Fix imports of snakeplan, instead place projects in the pythonpath
  * Move templates from the application to the project
+ * View/Form for Logged Time (where is the relationship?) - bsmith
+ * Some sort of menu layout static across all pages (make it a model/view for flexability?)
+ * Header linking back to the main page
+ * Authentication on the user pages.
+ * UI Design -- HARDCORE BITCH
