@@ -5,7 +5,7 @@
 
 <ol>
     {% for project in object_list %}
-    <li><a href="{{project.id}}">{{project.name}}</a></li>
+    <li><a href="/p/project/{{project.id}}/iterations/">{{project.name}}</a></li>
     {% endfor %}
 </ol>
 {% endblock %}
