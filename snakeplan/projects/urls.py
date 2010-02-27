@@ -1,10 +1,11 @@
 from django.conf.urls.defaults import patterns, url
 
-
 urlpatterns = patterns('snakeplan.projects.views',
     (r'^$', 'projects.index'),
-    (r'^story/(.*)/', 'stories.index'),
-    (r'^iteration/(.*)/', 'iterations.index'),
-    (r'^create/', 'projects.create_project'),
-    url(r'^(.*)/', 'projects.project_iterations', name='project_iterations'),
+    (r'^projects/$', 'projects.index'),
+    (r'^project/create/', 'projects.create_project'),
+    (r'^project/(.*)/iterations/', 'projects.project_iterations'),
+    (r'^iteration/(.*)/stories/', 'iterations.index'),
+    (r'^story/(.*)/tasks/', 'stories.index'),
+    (r'^task/(.*)/', 'tasks.index'),
 )
