@@ -44,13 +44,13 @@ USE_I18N = False
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = ''
+MEDIA_ROOT = os.path.join(PROJECT_DIR, 'templates/media')
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
 # Examples: "http://media.lawrence.com", "http://example.com/media/"
-MEDIA_URL = ''
-ADMIN_MEDIA_PREFIX = '/media/'
+MEDIA_URL = '/media'
+ADMIN_MEDIA_PREFIX = MEDIA_URL + 'admin/'
 
 SECRET_KEY = 'ow28jyl#0h8+^3$-!*%o-qfj5#zyr@xz+%vn_a3iizhn%l-3_='
 
@@ -78,4 +78,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.admin',
     'snakeplan.projects',
+    'snakeplan.accounts',
 )
+
+AUTH_PROFILE_MODULE = 'snakeplan.accounts.UserProfile'

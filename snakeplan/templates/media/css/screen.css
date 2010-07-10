@@ -1,0 +1,94 @@
+/*********************************************************************
+ * Base                                                              *
+ *********************************************************************/
+body {
+    font: 12px Verdana, Arial, sans-serif;
+    margin: 0;
+}
+         
+h1, h2, h3, h4, h5 {
+    font-family: Georgia, Times, 'Times New Roman', serif;
+    font-weight: normal;
+    text-align: center;
+}
+
+a {
+    color: #00F;
+}
+
+table {
+    margin: auto;
+    border: 1px solid #CCC;
+    border-collapse: collapse;
+}
+
+td, th {
+    padding: 5px;
+    border: 1px solid #AAA;
+}
+
+th {
+    background: #AAA;
+    text-align: center;
+    border-bottom: 1px solid black;
+}
+
+.row-actions {
+    text-align: center;
+}
+
+.action-bar {
+    width: 75%;
+    margin: 10px auto;
+    padding: 0px;
+    list-style: none;
+    height: 20px;
+}
+
+.action-bar li {
+    display: block;
+    float: right;
+    padding: 0 10px;
+}
+
+a.action {
+    text-decoration: none;
+    color: #000;
+}
+
+a.action img {
+    vertical-align: middle;
+}
+
+div.warning {
+    border-color: #FC3;
+    background: #FF9 url('../images/warning.png');
+}
+
+div.error {
+    background: #FCC url('../images/error.png');
+    border-color: #903;
+}
+
+div.info {
+    background: #CCF url('../images/info.png');
+    border-color: #00C;
+}
+
+div.user-notice {
+    border-width: 1px;
+    border-style: solid;
+    padding: 20px 20px 20px 50px;
+    width: 50%;
+    margin: auto;
+    background-repeat: no-repeat;
+    background-position: 20px;
+}
+             
+
+/*********************************************************************
+ * Projects                                                          *
+ *********************************************************************/
+.project.inactive, .project.inactive a {
+    color: #999;
+}
