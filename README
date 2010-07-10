@@ -1,0 +1,12 @@
+SnakePlan
+=========
+
+SnakePlan is a web-based tool used to manage agile software development
+projects. The general approach was taken from the venerable but aging and
+unmaintained xplanner.
+
+The concept was created by Mike Pirnat and Mike Crute at PyCon 2009.
+
+SnakePlan is written in Python using Django.
+
+The project is just getting started so there isn't much else to say just yet!
