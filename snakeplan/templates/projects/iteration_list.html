@@ -1,10 +1,15 @@
 {% extends "base.html" %}
 
-{% block content %}
-<h1>Project: {{project_name}}</h1>
+{% block title %}{{ project_name }} Iterations{% endblock %}
+{% block pagetitle %}{{ project_name }} Iterations{% endblock %}
 
-<h2>Iterations</h2>
-	
+{% block actionbar %}
+<li><a href="{% url project-list %}" class="action"><img src="{{MEDIA_URL}}/images/arrow_left.png" title="Back to Projects" alt="Back to Projects" /> Project List</a></li>
+<li><a href="{% url create-project %}" class="action"><img src="{{MEDIA_URL}}/images/add.png" title="Create" alt="Create" /> Create Iteration</a></li>
+{% endblock %}
+
+{% block content %}
+{% if object_list %}
 <table>
     <tr>
         <th>Iteration</th>
@@ -21,4 +26,7 @@
     </tr>
 {% endfor %}
 </table>
+{% else %}
+<div class="user-notice info">There are no iterations</div>
+{% endif %}
 {% endblock %}
