@@ -1,5 +1,11 @@
 #!/usr/bin/env python
 # vim: set filencoding=utf8
+"""
+SnakePlan Setup Script
+
+@author: Mike Crute (mcrute@gmail.com)
+@date: July 09, 2010
+"""
 
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,13 +19,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""
-SnakePlan Setup Script
-
-@author: Mike Crute (mcrute@gmail.com)
-@organization: SoftGroup Interactive, Inc.
-@date: July 09, 2010
-"""
 
 import snakeplan
 from setuptools import setup, find_packages
