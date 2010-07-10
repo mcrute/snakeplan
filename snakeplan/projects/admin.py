@@ -19,10 +19,18 @@ SnakePlan Admin Setup
 # limitations under the License.
 
 from snakeplan.projects import models
-from django.contrib import admin
+from django.contrib.admin import ModelAdmin, site
 
-admin.site.register(models.Task)
-admin.site.register(models.Story)
-admin.site.register(models.Project)
-admin.site.register(models.Iteration)
-admin.site.register(models.LoggedTime)
+
+class ProjectAdmin(ModelAdmin):
+
+    list_display = ('name', 'active')
+    ordering = ('name', )
+
+
+site.register(models.Task)
+site.register(models.Story)
+site.register(models.Project, ProjectAdmin)
+site.register(models.Iteration)
+site.register(models.DevelopmentIteration)
+site.register(models.LoggedTime)

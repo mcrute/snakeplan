@@ -24,8 +24,13 @@ from django.contrib.auth.models import User
 
 
 STATUSES = (
-    (0, 'Active'),
-    (1, 'Inactive'),
+    (0, 'Draft'),
+    (1, 'Defined'),
+    (2, 'Estimated'),
+    (3, 'Planned'),
+    (4, 'Implemented'),
+    (5, 'Verified'),
+    (6, 'Accepted'),
     )
 
 DISPOSITIONS = (
@@ -47,10 +52,9 @@ TASK_TYPES = (
 class Project(Model):
 
     name = m.CharField(max_length=200)
-    description = m.TextField(blank=True)
+    description = m.TextField(blank=True, null=True)
     active = m.BooleanField(default=True)
-    hidden = m.BooleanField(default=False)
-    wiki_link = m.URLField(blank=True)
+    wiki_link = m.URLField(blank=True, null=True)
 
     def __unicode__(self):
         return self.name
@@ -58,16 +62,25 @@ class Project(Model):
 
 class Iteration(Model):
 
-    name = m.CharField(max_length=200)
     project = m.ForeignKey(Project)
-    status = m.IntegerField(choices=STATUSES, default=0)
-    start_date = m.DateField()
-    end_date = m.DateField()
-    days_worked = m.DecimalField(default=0, decimal_places=2, max_digits=5)
-    description = m.TextField(blank=True)
+
+    name = m.CharField(max_length=200)
+    description = m.TextField(blank=True, null=True)
+
+    # It should not be possible to delete the backlog
+    can_delete = m.BooleanField(default=True)
 
     def __unicode__(self):
         return self.name
+
+
+# Not all iterations are actually open for development
+# for example, the Backlog is not a development iteration.
+class DevelopmentIteration(Iteration):
+
+    active = m.BooleanField(default=True)
+    start_date = m.DateField(blank=True, null=True)
+    end_date = m.DateField(blank=True, null=True)
 
 
 class Story(Model):
@@ -75,16 +88,17 @@ class Story(Model):
     class Meta:
         verbose_name_plural = 'Stories'
 
-    name = m.CharField(max_length=200)
     iteration = m.ForeignKey(Iteration)
-    disposition = m.IntegerField(choices=DISPOSITIONS)
-    customer = m.ForeignKey(User, blank=True, null=True,
-                                related_name='story_customer')
     tracker = m.ForeignKey(User, blank=True, null=True)
+    customer = m.ForeignKey(User, blank=True, null=True,
+                            related_name='story_customer')
+
+    name = m.CharField(max_length=200)
+    disposition = m.IntegerField(choices=DISPOSITIONS, default=0)
     status = m.IntegerField(choices=STATUSES, default=0)
     priority = m.IntegerField()
     order = m.IntegerField()
-    description = m.TextField(blank=True)
+    description = m.TextField(blank=True, null=True)
 
     def __unicode__(self):
         return self.name
@@ -92,13 +106,15 @@ class Story(Model):
 
 class Task(Model):
 
-    name = m.CharField(max_length=200)
     story = m.ForeignKey(Story)
-    task_type = m.IntegerField(choices=TASK_TYPES)
-    disposition = m.IntegerField(choices=DISPOSITIONS)
-    acceptor = m.ForeignKey(User, blank=True)
+    acceptor = m.ForeignKey(User, blank=True, null=True)
+
+    name = m.CharField(max_length=200)
+    completed = m.BooleanField(default=False)
+    task_type = m.IntegerField(choices=TASK_TYPES, default=0)
+    disposition = m.IntegerField(choices=DISPOSITIONS, default=0)
     estimated_hours = m.DecimalField(decimal_places=2, max_digits=5)
-    description = m.TextField(blank=True)
+    description = m.TextField(blank=True, null=True)
 
     def __unicode__(self):
         return self.name
@@ -106,13 +122,15 @@ class Task(Model):
 
 class LoggedTime(Model):
 
-    start_time = m.DateTimeField(blank=True)
-    end_time = m.DateTimeField(blank=True)
+    task = m.ForeignKey(Task)
+    person1 = m.ForeignKey(User, blank=True, null=True, related_name="person1")
+    person2 = m.ForeignKey(User, blank=True, null=True, related_name="person2")
+
     logged_date = m.DateField()
+    start_time = m.DateTimeField(blank=True, null=True)
+    end_time = m.DateTimeField(blank=True, null=True)
     duration = m.DecimalField(decimal_places=2, max_digits=5)
-    person1 = m.ForeignKey(User, blank=True, related_name="person1")
-    person2 = m.ForeignKey(User, blank=True, related_name="person2")
-    description = m.TextField(blank=True)
+    description = m.TextField(blank=True, null=True)
 
     def __unicode__(self):
         return self.description

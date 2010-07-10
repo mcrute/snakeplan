@@ -10,7 +10,7 @@ from snakeplan.projects.forms import ProjectForm
 def index(request):
     return list_detail.object_list(
         request=request,
-        queryset=Project.objects.all(),
+        queryset=Project.objects.order_by('-active', 'name').all(),
         allow_empty=True
         )
 
