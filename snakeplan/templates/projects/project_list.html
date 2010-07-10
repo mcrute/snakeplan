@@ -1,11 +1,45 @@
 {% extends "base.html" %}
 
-{% block content %}
-<h1>Projects</h1>
+{% block title %}Project List{% endblock %}
+{% block pagetitle %}Project List{% endblock %}
 
-<ol>
+{% block actionbar %}
+<li><a href="{% url create-project %}" class="action"><img src="{{MEDIA_URL}}/images/add.png" title="Create" alt="Create" /> Create Project</a></li>
+{% endblock %}
+
+{% block content %}
+{% if object_list %}
+<table id="project-list">
+    <tr>
+        <th>Project Name</th>
+        <th>Tags</th>
+        <th>Iteration</th>
+        <th>Actions</th>
+    </tr>
+
     {% for project in object_list %}
-    <li><a href="/p/project/{{project.id}}/iterations/">{{project.name}}</a></li>
+    {% if not project.active %}
+    <tr class="project inactive">
+    {% else %}
+    <tr class="project">
+    {% endif %}
+        <td><a href="{% url project-iterations project.id %}">{{project.name}}</a></td>
+        <td>some, tags, go, here</td>
+        <td><a href="#">Some Iteration</a></td>
+        <td class="row-actions">
+            <a href="#"><img src="{{MEDIA_URL}}/images/pencil.png" title="Edit" alt="Edit" /></a>
+            <a href="#"><img src="{{MEDIA_URL}}/images/delete.png" title="Delete" alt="Delete" /></a>
+
+            {% if not project.active %}
+            <a href="#"><img src="{{MEDIA_URL}}/images/connect.png" title="Activate" alt="Activate" /></a>
+            {% else %}
+            <a href="#"><img src="{{MEDIA_URL}}/images/disconnect.png" title="Deactive" alt="Deactivate" /></a>
+            {% endif %}
+        </td>
+    </tr>
     {% endfor %}
-</ol>
+</table>
+{% else %}
+<div class="user-notice info">There are no projects!</div>
+{% endif %}
 {% endblock %}
