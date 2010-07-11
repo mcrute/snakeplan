@@ -1,6 +1,6 @@
 from django.views.generic import list_detail
-from snakeplan.projects.models import Iteration
-from snakeplan.projects.models import Story
+from projects.models import Iteration
+from projects.models import Story
 
 def index(request, iteration_id):
     stories = Story.objects.filter(iteration=iteration_id)
