@@ -20,12 +20,18 @@ SnakePlan Project Urls
 
 from django.conf.urls.defaults import patterns, url
 
+
 urlpatterns = patterns('snakeplan.projects.views',
-    url(r'^$', 'projects.index'),
-    url(r'^projects/$', 'projects.index', name='project-list'),
-    url(r'^project/create/', 'projects.create_project', name='create-project'),
-    url(r'^project/(.*)/iterations/', 'projects.project_iterations', name='project-iterations'),
-    url(r'^iteration/(.*)/stories/', 'iterations.index'),
-    url(r'^story/(.*)/tasks/', 'stories.index'),
-    url(r'^task/(.*)/', 'tasks.index'),
+    url(r'^$', 'projects.index', name='project-list'),
+
+    # Projects
+    url(r'^create/', 'projects.create_project', name='create-project'),
+    url(r'^(\d+)/edit/', 'projects.update_project', name='edit-project'),
+    url(r'^(\d+)/', 'projects.project_iterations', name='project-iterations'),
+
+    # Iterations
+    url(r'^(\d+)/iterations/(\d+)/', 'projects.index'),
+
+    # Stories
+    url(r'^(\d+)/stories/(\d+)/', 'projects.index', name='iteration-stories'),
 )
