@@ -22,7 +22,7 @@ Project Views
 from django.views.generic import list_detail, create_update
 from django.core.urlresolvers import reverse
 
-from ..models import Project, Iteration
+from projects.models import Project, Iteration
 
 
 def index(request):

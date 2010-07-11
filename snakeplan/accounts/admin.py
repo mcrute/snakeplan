@@ -18,7 +18,7 @@ SnakePlan Admin Setup
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from snakeplan.accounts import models
+import models
 from django.contrib import admin
 
 admin.site.register(models.UserProfile)

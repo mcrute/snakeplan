@@ -1,6 +1,6 @@
 from django.views.generic import list_detail
-import snakeplan.projects.models as sp_models
-from snakeplan.projects.models import Task
+import projects.models as sp_models
+from projects.models import Task
 
 
 def index(request, task_id):
