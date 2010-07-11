@@ -5,9 +5,15 @@
 
 {% block content %}
 <form action="" method="POST">
-<ul>
-{{ form.as_ul }}
-</ul>
-<input type="submit" value="Save"/>
+<fieldset>
+    <legend>Create Project</legend>
+    <ol>
+        {{ form.as_ul }}
+    </ol>
+</fieldset>
+
+<fieldset class="submit">
+    <input type="submit" value="Create Project"/>
+</fieldset>
 </form>
 {% endblock %}

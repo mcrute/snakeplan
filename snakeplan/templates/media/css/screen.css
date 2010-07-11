@@ -16,6 +16,11 @@ a {
     color: #00F;
 }
 
+form, table, .action-bar {
+    width: 75%;
+    margin: auto;
+}
+
 table {
     margin: auto;
     border: 1px solid #CCC;
@@ -33,12 +38,17 @@ th {
     border-bottom: 1px solid black;
 }
 
+.copyright {
+    text-align: center;
+    font-size: 0.8em;
+    color: #999;
+}
+
 .row-actions {
     text-align: center;
 }
 
 .action-bar {
-    width: 75%;
     margin: 10px auto;
     padding: 0px;
     list-style: none;
@@ -60,6 +70,10 @@ a.action img {
     vertical-align: middle;
 }
 
+
+/*********************************************************************
+ * Messages                                                          *
+ *********************************************************************/
 div.warning {
     border-color: #FC3;
     background: #FF9 url('../images/warning.png');
@@ -84,7 +98,42 @@ div.user-notice {
     background-repeat: no-repeat;
     background-position: 20px;
 }
-             
+
+
+/*********************************************************************
+ * Forms                                                             *
+ *********************************************************************/
+fieldset ol {
+    padding: 0;
+    list-style: none;
+}
+
+fieldset ol li {
+    float: left;
+    clear: left;
+    width: 100%;
+    padding-bottom: 1em;
+}
+
+fieldset label {
+    float: left;
+    width: 10em;
+    margin-right: 1em;
+    text-align: right;
+}
+
+fieldset {
+    border: 0;
+}
+
+fieldset.submit {
+    padding-left: 10em;
+}
+
+fieldset legend {
+    display: none;
+}
+
 
 /*********************************************************************
  * Projects                                                          *

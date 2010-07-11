@@ -27,8 +27,7 @@
         <td>some, tags, go, here</td>
         <td><a href="#">Some Iteration</a></td>
         <td class="row-actions">
-            <a href="#"><img src="{{MEDIA_URL}}/images/pencil.png" title="Edit" alt="Edit" /></a>
-            <a href="#"><img src="{{MEDIA_URL}}/images/delete.png" title="Delete" alt="Delete" /></a>
+            <a href="{% url edit-project project.id %}"><img src="{{MEDIA_URL}}/images/pencil.png" title="Edit" alt="Edit" /></a>
 
             {% if not project.active %}
             <a href="#"><img src="{{MEDIA_URL}}/images/connect.png" title="Activate" alt="Activate" /></a>
