@@ -22,16 +22,18 @@ from django.conf.urls.defaults import patterns, url
 
 
 urlpatterns = patterns('projects.views',
-    url(r'^$', 'project.index', name='project-list'),
+#    url(r'^$', 'project.index', name='project-list'),
+#
+#    # Projects
+#    url(r'^create/', 'project.create_project', name='create-project'),
+#    url(r'^(\d+)/edit/', 'project.update_project', name='edit-project'),
+#    url(r'^(\d+)/', 'project.project_iterations', name='project-iterations'),
+#
+#    # Iterations
+#    url(r'^(\d+)/iterations/(\d+)/', 'project.index'),
+#
+#    # Stories
+#    url(r'^(\d+)/stories/(\d+)/', 'project.index', name='iteration-stories'),
 
-    # Projects
-    url(r'^create/', 'project.create_project', name='create-project'),
-    url(r'^(\d+)/edit/', 'project.update_project', name='edit-project'),
-    url(r'^(\d+)/', 'project.project_iterations', name='project-iterations'),
-
-    # Iterations
-    url(r'^(\d+)/iterations/(\d+)/', 'project.index'),
-
-    # Stories
-    url(r'^(\d+)/stories/(\d+)/', 'project.index', name='iteration-stories'),
+    url(r'^story/create/', 'stories.create_story', name='create-story'),
 )
