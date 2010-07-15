@@ -1,9 +1,10 @@
 # vim: set filencoding=utf8
 """
-SnakePlan Admin Setup
+Story Views
 
 @author: Mike Crute (mcrute@gmail.com)
-@date: July 09, 2010
+@organization: SoftGroup Interactive, Inc.
+@date: July 10, 2010
 """
 
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,20 +19,11 @@ SnakePlan Admin Setup
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import models
-from django.contrib.admin import ModelAdmin, site
+from django.views.generic import list_detail, create_update
+from django.core.urlresolvers import reverse
 
+from projects import models, forms
 
-class ProjectAdmin(ModelAdmin):
-
-    list_display = ('name', 'active')
-    ordering = ('name', )
-
-
-site.register(models.Project, ProjectAdmin)
-site.register(models.Iteration)
-site.register(models.Story)
-site.register(models.Release)
-site.register(models.Feature)
-site.register(models.Task)
-site.register(models.Comment)
+def create_story(request):
+    return create_update.create_object(request, form_class=forms.StoryForm,
+            post_save_redirect=reverse('create-story'))

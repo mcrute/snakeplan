@@ -23,29 +23,23 @@ from django.db.models import Model
 from django.contrib.auth.models import User
 
 
+DAY = (
+    (0, 'Sunday'),
+    (1, 'Monday'),
+    (2, 'Tuesday'),
+    (3, 'Wednesday'),
+    (4, 'Thursday'),
+    (5, 'Friday'),
+    (6, 'Saturday'),
+    )
+
 STATUSES = (
     (0, 'Draft'),
-    (1, 'Defined'),
-    (2, 'Estimated'),
-    (3, 'Planned'),
-    (4, 'Implemented'),
-    (5, 'Verified'),
-    (6, 'Accepted'),
-    )
-
-DISPOSITIONS = (
-    (0, 'Planned'),
-    (1, 'Carried Over'),
-    (2, 'Added'),
-    (3, 'Discovered'),
-    )
-
-TASK_TYPES = (
-    (0, 'Feature'),
-    (1, 'Debt'),
-    (2, 'Functional Test'),
-    (3, 'Acceptance Test'),
-    (4, 'Overhead'),
+    (1, 'Started'),
+    (2, 'Finished'),
+    (3, 'Delivered'),
+    (4, 'Accepted'),
+    (5, 'Rejected'),
     )
 
 
@@ -54,7 +48,14 @@ class Project(Model):
     name = m.CharField(max_length=200)
     description = m.TextField(blank=True, null=True)
     active = m.BooleanField(default=True)
-    wiki_link = m.URLField(blank=True, null=True)
+    start_date = m.DateField()
+
+    iteration_starts = m.IntegerField(choices=DAY, default=0)
+    iteration_length = m.IntegerField(default=2)
+    initial_velocity = m.IntegerField(default=10)
+    velocity_time_period = m.IntegerField(default=3)
+
+    current_velocity = m.IntegerField(default=10)
 
     def __unicode__(self):
         return self.name
@@ -64,73 +65,71 @@ class Iteration(Model):
 
     project = m.ForeignKey(Project)
 
-    name = m.CharField(max_length=200)
+    name = m.CharField(max_length=200, blank=True, null=True)
     description = m.TextField(blank=True, null=True)
+    start_date = m.DateField(blank=True, null=True)
+    end_date = m.DateField(blank=True, null=True)
 
-    # It should not be possible to delete the backlog
-    can_delete = m.BooleanField(default=True)
+    team_strength = m.DecimalField(decimal_places=2, max_digits=1, default=1)
 
     def __unicode__(self):
         return self.name
-
-
-# Not all iterations are actually open for development
-# for example, the Backlog is not a development iteration.
-class DevelopmentIteration(Iteration):
-
-    active = m.BooleanField(default=True)
-    start_date = m.DateField(blank=True, null=True)
-    end_date = m.DateField(blank=True, null=True)
 
 
 class Story(Model):
 
     class Meta:
-        verbose_name_plural = 'Stories'
+        verbose_name_plural = 'stories'
 
-    iteration = m.ForeignKey(Iteration)
+    project = m.ForeignKey(Project, related_name='stories')
+    iteration = m.ForeignKey(Iteration, blank=True, null=True)
     tracker = m.ForeignKey(User, blank=True, null=True)
     customer = m.ForeignKey(User, blank=True, null=True,
                             related_name='story_customer')
 
     name = m.CharField(max_length=200)
-    disposition = m.IntegerField(choices=DISPOSITIONS, default=0)
     status = m.IntegerField(choices=STATUSES, default=0)
-    priority = m.IntegerField()
-    order = m.IntegerField()
+    accept_date = m.DateField(blank=True, null=True)
     description = m.TextField(blank=True, null=True)
+    order = m.IntegerField(default=0)
 
     def __unicode__(self):
         return self.name
+
+
+class Release(Story):
+
+    release_date = m.DateField()
+
+
+class Feature(Story):
+
+    points = m.IntegerField(blank=True, null=True)
+
+
+class Bug(Story):
+    pass
 
 
 class Task(Model):
 
     story = m.ForeignKey(Story)
-    acceptor = m.ForeignKey(User, blank=True, null=True)
 
     name = m.CharField(max_length=200)
     completed = m.BooleanField(default=False)
-    task_type = m.IntegerField(choices=TASK_TYPES, default=0)
-    disposition = m.IntegerField(choices=DISPOSITIONS, default=0)
-    estimated_hours = m.DecimalField(decimal_places=2, max_digits=5)
-    description = m.TextField(blank=True, null=True)
+    order = m.IntegerField(default=0)
 
     def __unicode__(self):
         return self.name
 
 
-class LoggedTime(Model):
+class Comment(Model):
 
-    task = m.ForeignKey(Task)
-    person1 = m.ForeignKey(User, blank=True, null=True, related_name="person1")
-    person2 = m.ForeignKey(User, blank=True, null=True, related_name="person2")
+    user = m.ForeignKey(User)
+    story = m.ForeignKey(Story)
 
-    logged_date = m.DateField()
-    start_time = m.DateTimeField(blank=True, null=True)
-    end_time = m.DateTimeField(blank=True, null=True)
-    duration = m.DecimalField(decimal_places=2, max_digits=5)
-    description = m.TextField(blank=True, null=True)
+    post_date = m.DateTimeField(auto_now=True)
+    comment = m.TextField()
 
     def __unicode__(self):
-        return self.description
+        return self.comment
