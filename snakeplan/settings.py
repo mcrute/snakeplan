@@ -77,8 +77,10 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.admin',
+    'piston',
     'snakeplan.projects',
     'snakeplan.accounts',
+    'snakeplan.api',
 )
 
 AUTH_PROFILE_MODULE = 'snakeplan.accounts.UserProfile'
