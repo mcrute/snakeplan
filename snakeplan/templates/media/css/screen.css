@@ -16,8 +16,8 @@ a {
     color: #00F;
 }
 
-form, table, .action-bar {
-    width: 75%;
+form, table, .action-bar, ul.list-table {
+    width: 60%;
     margin: auto;
 }
 
@@ -132,6 +132,45 @@ fieldset.submit {
 
 fieldset legend {
     display: none;
+}
+
+ul.list-table {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul.list-table li {
+    margin: 0 5px 5px 5px;
+    padding: 5px;
+}
+
+/*********************************************************************
+ * jQuery UI Styles                                                  *
+ *********************************************************************/
+ul.list-table li.ui-state-highlight {
+     height: 1.5em;
+     line-height: 1.2em;
+}
+
+span.overlay-close {
+    cursor: pointer;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+
+.overlay-display-box {
+    position: absolute;
+}
+
+.overlay-background {
+    cursor: pointer;
+    position: absolute;
+}
+
+.overlay-foreground {
+    padding: 10px;
+    position: absolute;
 }
 
 
