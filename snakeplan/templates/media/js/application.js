@@ -8,8 +8,6 @@ var URLS = {
     projectStories: "/api/project/{0}/stories"
 };
 
-window.simpleTemplate = simpleTemplate;
-
 $(document).ready(function()
 {
     $.getJSON(URLS.project, loadProjectSelector);
