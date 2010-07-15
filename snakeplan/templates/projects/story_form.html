@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SnakePlan</title>
+    <link rel="stylesheet" href="{{ MEDIA_URL }}/css/screen.css" type="text/css" media="screen, projection" />
+    <link rel="stylesheet" href="{{ MEDIA_URL }}/css/excite-bike.css" type="text/css" media="screen, projection" />
+    <!-- Enough is enough! I have had it with these motherfucking snakes on this motherfucking plan! -->
+</head>
+
+<body>
+
+
+<form action="" method="POST">
+<fieldset>
+    <legend>Create Project</legend>
+    <ol>
+        {{ form.as_ul }}
+    </ol>
+</fieldset>
+
+<fieldset class="submit">
+    <input type="submit" value="Create Project"/>
+</fieldset>
+</form>
+
+</body>
+</html>
