@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>{% block title %}{% endblock %} - SnakePlan</title>
-    <link rel="stylesheet" href="{{MEDIA_URL}}/css/screen.css" type="text/css" media="screen, projection" />
+    <title>SnakePlan</title>
+    <link rel="stylesheet" href="{{ MEDIA_URL }}/css/screen.css" type="text/css" media="screen, projection" />
+    <link rel="stylesheet" href="{{ MEDIA_URL }}/css/jquery-ui.css" type="text/css" media="screen, projection" />
     <!-- Enough is enough! I have had it with these motherfucking snakes on this motherfucking plan! -->
 </head>
 
@@ -10,12 +11,41 @@
     <h1>{% block pagetitle %}SnakePlan{% endblock %}</h1>
 
     <ul class="action-bar">
-    {% block actionbar %}{% endblock %}
-    </ul >
+    Project: <select id="project-select"><option disabled="disabled">-- Select Project --</option></select>
+    </ul>
 
+    <ul id="task-table" class="list-table">
+        <li>
+           <div class="ui-widget">
+                <div class="ui-state-highlight ui-corner-all" style="margin-top: 20px; padding: 0 .7em;"> 
+                    <p><span class="ui-icon ui-icon-info" style="float: left; margin-right: .3em;"></span>
+                    Select a project to start editing stories!</p>
+                </div>
+            </div>
+            <br />
+        </li>
+    </ul>
 
-    {% block content %}{% endblock %}
-</body>
+<div id="overlay" class="ui-overlay" style="display: none">
+    <div class="ui-widget-overlay"></div>
+    <div id="overlay-display-box" class="overlay-display-box" style="display: none">
+        <div class="ui-widget-shadow ui-corner-all overlay-background"></div>
+        <div class="ui-widget ui-widget-content ui-corner-all overlay-foreground">
+            <span class="ui-icon ui-icon-close overlay-close"></span>
+            <h1 style="font-family: Georgia">Welcome to SnakePlan</h1>
+            <p style="font-family: Georgia">
+                Welcome to SnakePlan the open-source project management system. Please don't mind the
+                dust, we're still building things!
+            </p>
+        </div>
+    </div>
+</div>
 
 <p class="copyright">SnakePlan is open-source under the Apache License. You can play with the snake, he won't bite.</p>
+
+<script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery-ui-1.8.2.min.js"></script>
+<script type="text/javascript" src="{{ MEDIA_URL }}/js/application.js"></script>
+
+</body>
 </html>
