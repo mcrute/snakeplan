@@ -1,9 +1,10 @@
 # vim: set filencoding=utf8
 """
-SnakePlan URL Configuration
+API URLConf
 
 @author: Mike Crute (mcrute@gmail.com)
-@date: July 09, 2010
+@organization: SoftGroup Interactive, Inc.
+@date: July 13, 2010
 """
 
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,18 +19,17 @@ SnakePlan URL Configuration
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from django.views import static
-from django.views.generic.simple import direct_to_template
-from django.conf.urls.defaults import patterns, include
 
-from django.contrib import admin; admin.autodiscover()
+from django.conf.urls.defaults import patterns, include, url
+from piston.resource import Resource
 
+import handlers
 
 urlpatterns = patterns('',
-    (r'^api/', include('api.urls')),
-    (r'^', include('projects.urls')),
-    (r'^$', direct_to_template, { 'template': 'base.html' }),
+    url(r'project/(?P<id>[^/]+)/stories', Resource(handlers.ProjectStoryHandler)),
+    url(r'project/(?P<id>[^/]+)/', Resource(handlers.ProjectHandler)),
+    url(r'project/', Resource(handlers.ProjectHandler)),
 
-    (r'^admin/', include(admin.site.urls)),
-    (r'^media/(?P<path>.*)$', static.serve, {'document_root':'templates/media'}),
+    url(r'task/(?P<id>[^/]+)/', Resource(handlers.TaskHandler)),
+    url(r'task/', Resource(handlers.TaskHandler)),
 )
